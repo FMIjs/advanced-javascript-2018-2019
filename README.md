@@ -13,4 +13,4 @@
 <a href="https://fmijs.slack.com">>>> Join us on SLACK <<<</a>
 
 ## Poster
-<img src="https://telegra.ph/file/57b3b008e30b9b32a9446.png" alt="advanced-javascript-at-faculty-of-mathematics-and-informatics-sofia">
+<img src="https://github.com/FMIjs/advanced-javascript-2018-2019/blob/master/poster.png?raw=true" alt="advanced-javascript-at-faculty-of-mathematics-and-informatics-sofia">
