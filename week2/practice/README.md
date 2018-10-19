@@ -6,9 +6,10 @@
 
     ```js
     var sum = function (x, y) { return x + y; }
-    console.log(memoize(sum)(2,3)); // пресмята, връща 5
-    console.log(memoize(sum)(3,3)); // пресмята, връща 6
-    console.log(memoize(sum)(2,3)); // директно връща 5 без да смята
+    var memSum = memoize(sum);
+    console.log(memSum(2,3)); // пресмята, връща 5
+    console.log(memSum(3,3)); // пресмята, връща 6
+    console.log(memSum(2,3)); // директно връща 5 без да смята
     ```
 
 2. Напишете функция `curry`, която взима дадена функция f като аргумент и ни връща нова функция, чрез която частично можем да прилагаме f.
