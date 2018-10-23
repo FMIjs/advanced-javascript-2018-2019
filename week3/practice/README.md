@@ -8,17 +8,25 @@
 2. Използвайки класическо прототипно наследяване и направете конструктор функя User, която наследява функционалността на Base и ви дава възможност да записвате, четете и изтривате потребители.
     Пример:
     ```js
-    const myUser = User.insert({ name: 'Ivan', age: 20 });
-    const sameUser = User.getById(myUser.id);
-    User.deleteById(sameUser.id);
-    const notExistingUser = User.getById(myUser.id);
-    console.log(notExistingUser); // > null
+    User.insert({ name: 'Ivan', age: 20 }, function (err, myUser) {
+        User.getById(myUser.id, function(err, sameUser) {
+            User.deleteById(sameUser.id, function(err) {
+                User.getById(myUser.id, function(err, notExistingUser) {
+                    console.log(notExistingUser); // > null
+                });
+            });
+        });
+    });
     ```
 3. Допълнете get и delete към `Base`, които изпозват query. 
     Пример:
     ```js
-    User.insert({ name: 'Ivan', age: 20 });
-    User.insert({ name: 'Ivan', age: 30 });
-    const ivanUsers = User.get({ name: 'Ivan' });
-    console.log(ivanUsers); // > [{ name: 'Ivan', age: 20 }, { name: 'Ivan', age: 30 }] 
+    User.insert({ name: 'Ivan', age: 20 }, function (err, user) {
+        User.insert({ name: 'Ivan', age: 30 }, function(err, sameUser) {
+            const ivanUsers = User.get({ name: 'Ivan' }, function(err, ivanUsers) {
+                console.log(ivanUsers); // > [{ name: 'Ivan', age: 20 }, { name: 'Ivan', age: 30 }] 
+            });
+        });
+    });
+    
     ```
