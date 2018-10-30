@@ -20,13 +20,17 @@ function Base(name) {
 }
 
 Base.prototype._filterByQuery = function (query, shouldIncluide = true) {
-  return Object.values(this.db.entities).filter(entity => {
+  let others = [];
+  const filtered = Object.values(this.db.entities).filter(entity => {
     let match = true;
     for (let [field, value] of Object.entries(query)) {
       match = match && entity[field] === value;
     }
-    return shouldIncluide ? match : !match;
-  })
+    const result = shouldIncluide ? match : !match;
+    if (!result) { others = others.concat(entity); }
+    return result;
+  });
+  return { others, filtered };
 }
 
 Base.prototype._writeEntities = function (entities, ...args) {
@@ -38,31 +42,34 @@ Base.prototype._writeEntities = function (entities, ...args) {
 Base.prototype.insert = function (entity, cb) {
   const id = this.db.lastId + 1;
   entity = { id, ...entity };
-  const dbCopy = {
-    entities: {
-      ...this.db.entities,
-      [id]: entity
-    },
-    lastId: id
-  };
+  this.db.entities[id] = entity;
 
   this._writeEntities(dbCopy.entities, id, function (err) {
-    if (err) { cb(err); return }
-    this.db = dbCopy;
+    if (err) {
+      delete this.db.entities[id]; // delete is very slow
+      cb(err);
+      return
+    }
     cb(null, entity);
   }.bind(this));
 }
 
 Base.prototype.removeById = function (id, cb) {
+  var removedEntity = this.db.entities[id];
   const updatedEntities = Object.keys(this.db.entities).reduce((acc, currentId) => {
-    if (parseInt(currentId) === parseInt(id)) { return acc; }
+    if (parseInt(currentId) === parseInt(id)) {
+      return acc;
+    }
     acc[currentId] = this.db.entities[currentId];
     return acc;
-  }, {});
-
+  }, {}); // or just use delete
+  this.db.entities = updatedEntities;
   this._writeEntities(updatedEntities, err => {
-    if (err) { cb(err); return; }
-    this.db.entities = updatedEntities;
+    if (err) {
+      this.db.entities[removedEntity.id] = removedEntity;
+      cb(err);
+      return;
+    }
     cb(null);
   });
 }
@@ -72,7 +79,8 @@ Base.prototype.getById = function (id, cb) {
 }
 
 Base.prototype.get = function (query, cb) { // { name: 'Ivan' }
-  cb(null, this._filterByQuery(query));
+  const result = this._filterByQuery(query);
+  cb(null, Object.values(result.filtered));
 }
 
 Base.prototype.getAll = function (cb) {
@@ -80,10 +88,17 @@ Base.prototype.getAll = function (cb) {
 }
 
 Base.prototype.delete = function (query, cb) {
-  const updatedEntities = this._filterByQuery(query, false);
-  this._writeEntities(updatedEntities, err => {
-    if (err) { cb(err); return; }
-    this.db.entities = updatedEntities;
+  const result = this._filterByQuery(query, false);
+  this.db.entities = result.filtered;
+  this._writeEntities(this.db.entities, err => {
+    if (err) {
+      result.others.forEach(function (entity) {
+        this.db.entities[entity.id] = entity;
+      }.bind(this));
+      cb(err);
+      return;
+    }
+
     cb(null);
   });
 }
