@@ -41,11 +41,11 @@ Base.prototype._write = function () {
     process.nextTick(() => {
       fs.writeFile(this.filePath, JSON.stringify(this.db), (err) => {
         this.promiseData.forEach(({ resolve, reject }) => {
-          this.shouldWrite = false;
-          this.promiseData = [];
           if (err) { reject(err); return; }
           resolve();
         });
+        this.shouldWrite = false;
+        this.promiseData = [];
       });
     });
   }
