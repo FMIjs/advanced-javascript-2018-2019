@@ -1,0 +1,13 @@
+{
+  "name": "lecture",
+  "version": "1.0.0",
+  "description": "This is week5 lecture",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.12.2"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.2"
+  }
+}
