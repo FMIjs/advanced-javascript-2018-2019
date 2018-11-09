@@ -1,0 +1,18 @@
+
+*   test : {{test}}
+*   method is: {{method}}
+*   host is : {{host}}
+*   body parameters are: 
+{{#bodykeys}} 
+    - {{.}}
+{{/bodykeys}} 
+
+*   url params are : 
+     {{#urlkeys}} 
+    - {{.}}
+    {{/urlkeys}} 
+
+*   headers: 
+{{#headers}}
+    - {{.}}
+{{/headers}}
