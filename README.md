@@ -1,16 +1,19 @@
 # Advanced JavaScript @ FMI / 2017-2018 /
 
-## Lecturers: 
+## Lecturers
+
 * [Gheorgi Penkov](https://www.linkedin.com/in/penkov/)
 * [Ilia Idakiev](https://www.linkedin.com/in/idakiev/)
 * [Aleksander Kostov](https://www.linkedin.com/in/aleksander-kostov-800509105/)
 
-## Course Website:
-<a href="http://telegra.ph/FMI-JS-1718-09-25?utm_source=tr.im&utm_medium=no_referer&utm_campaign=tr.im%2FFMIJS-17-18&utm_content=direct_input">>>> Click here <<<</a>
+## Course Website
 
-## Contacts:
+[>>> Click here <<<](https://telegra.ph/FMIJS-18-09-18)
 
-<a href="https://fmijs.slack.com">>>> Join us on SLACK <<<</a>
+## Contacts
+
+[>>> Join us on SLACK <<<](https://fmijs.slack.com)
 
 ## Poster
+
 <img src="https://github.com/FMIjs/advanced-javascript-2018-2019/blob/master/poster.png?raw=true" alt="advanced-javascript-at-faculty-of-mathematics-and-informatics-sofia">
