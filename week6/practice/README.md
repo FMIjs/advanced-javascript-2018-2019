@@ -1,63 +1,11 @@
-# Week 5
+# Упражнение 6
 
-* TypeScript
+Използвайки [`Express`](http://expressjs.com/en/starter/hello-world.html) да се създаде сървър, който да извършва [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) на потребители.
 
-  * Basics
-  * Compiling
-  * Sourcemaps
+За база данни използвайте `Base` и `User Entity` от [предходните упражнения](https://github.com/FMIjs/advanced-javascript-2018-2019/tree/master/week4/practice).
 
-    * `*.map.js`
-    * Debugging in VS Code
+Да се съдадат и следните екрани:
 
-* Modules
-
-  * Package Managers
-
-    * npm
-    * yarn
-  * Where to find packages?
-
-    * GitHub
-    * [NPM](https://www.npmjs.com/)
-
-  * Installing (dev) modules
-  * `package.json` > Information about the current project, its state and the dependencies
-  * `.gitignore` > What not to commit to GitHub
-  * `*.lock` > Accurate information about the installed dependancies
-
-  * Exporting Modules
-
-    * `export const a = ...;`
-    * `export { a, b, ... };`
-    * `export default a = ...;`
-
-  * Importing Modules
-
-    * `import * as myModule from 'myModule';`
-    * `import { prop } from 'myModule';`
-    * Rename imports: `import { prop as newName} from 'myModule';`
-    * Importing default exports: `import prop from 'myModule';`
-  
-  * Creating our first [http](https://nodejs.org/api/http.html) server!
-
-    * Getting started
-
-      * `.createServer()` > create the server
-      * `.listen()` > tell the server on which port to listen
-
-    * Sending data to the user
-
-      * `res.writeHead(200, { ... })`
-      * `res.write('Hello')`
-
-    * Handling different endpoints
-
-      * All request get handled by `createServer` and call the given callback (`(req, res) => {}`)
-      * Information about the requst is stored in the `req` argument
-
-    * Make the whole thing easier ...
-
-      * [Express](https://expressjs.com/)
-      * [Hapi](https://hapijs.com/)
-
-* Streams
+* User Create > съдържа форма (`<form>`), която `POST`-ва към `api/users`
+* User Edit > съдържа форма (`<form>`), която `PUT`-ва към `api/users`
+* User List > съдържа списък (`<ul><li>...</li></ul>`) от потребители, които `GET`-ва от `api/users`
