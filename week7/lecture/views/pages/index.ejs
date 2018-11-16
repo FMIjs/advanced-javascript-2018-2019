@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>User List</title>
+</head>
+<body>
+  <ul>
+  <% if(users.length > 0){ %>
+    <div><a href="/add">Add user</a></div>
+    <% users.forEach(function(user) { %>
+      <li><span><%= user.name %> - <%= user.age %></span><a href="/edit/<%= user.id %>">Edit</a></li>
+    <% }); %>
+  <% } else{ %>  
+    <h1>No users added!</h1>
+    <div>Click <a href="/add">here</a> to add user.</div>
+  <% } %>
+  </ul>
+</body>
+</html>
