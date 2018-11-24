@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FMJS</title>
+  <!-- <script defer src="./index.js"></script> -->
+  <script defer src="./custom-elements.js"></script>
+</head>
+
+<body>
+  <app-counter value="30"></app-counter>
+  <script>
+    const appCounter = document.getElementsByTagName('app-counter')[0];
+    appCounter.addEventListener('counter-change', function ({ detail: counterValue }) {
+      console.log('Counter value was changed ' + counterValue);
+    })
+  </script>
+</body>
+
+</html>
