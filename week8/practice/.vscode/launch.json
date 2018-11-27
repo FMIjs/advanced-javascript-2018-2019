@@ -1,0 +1,26 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "_Launch Program",
+      "program": "${workspaceFolder}/${relativeFile}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Build and Launch Server",
+      "program": "${workspaceFolder}/dist/index.js",
+      "preLaunchTask": "build",
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+  ]
+}
