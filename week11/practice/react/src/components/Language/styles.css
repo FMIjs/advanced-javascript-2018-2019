@@ -1,0 +1,8 @@
+#language-switcher .selected {
+  color: red;
+}
+
+#language-switcher > * {
+  cursor: pointer;
+  display: inline-block;
+}
