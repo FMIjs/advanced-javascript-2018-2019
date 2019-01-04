@@ -1,0 +1,23 @@
+<div>
+  {{title}}
+</div>
+
+<input #titleInput type="text" [value]="title" (keyup)="inputChangeHandler(titleInput.value)" />
+<button (click)="toggleTest()">Toogle Test</button>
+
+<app-test [name]="title" *ngIf="showTest" (myEvent)="handleEvent($event)"></app-test>
+
+<input type="text" [(ngModel)]="title">
+
+<form #form="ngForm">
+  <input [ngModel]="title" required name="firstName" minlength="3" />
+  <input type="number" ngModel name="age" [appMaxValue]="20">
+</form>
+{{form.valid}}
+{{form.value | json}}
+
+<ul>
+  <li *ngFor="let user of users">{{user.name}}</li>
+</ul>
+
+<app-list></app-list>
