@@ -1,0 +1,41 @@
+<!-- <div>
+  {{title}}
+</div>
+
+<input #titleInput type="text" [value]="title" (keyup)="inputChangeHandler(titleInput.value)" />
+<button (click)="toggleTest()">Toogle Test</button> -->
+
+<input type="text" #myInput>
+
+<app-test *ngIf="authUser$ | async" [user]="authUser$ | async">
+  <div>Some Html</div>
+</app-test>
+<button (click)="handleEvent($event)">Login</button>
+
+<nav>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+  <a routerLink="/about" routerLinkActive="active">About</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+<!-- <input type="text" [(ngModel)]="title">
+
+{{ user | getProp : 'name' }} -->
+<!-- <form #form="ngForm">
+  <input [ngModel]="title" required name="firstName" minlength="3" />
+  <input #age="ngModel" type="number" ngModel name="age" [appMaxValue]="20">
+  <div *ngIf="age?.errors?.maxValue">Please enter a number less than 20</div>
+</form> -->
+<!-- <form [formGroup]="form">
+  <input type="text" formControlName="name" />
+  <input type="number" formControlName="age" />
+</form>
+{{form.valid}}
+{{form.value | json}}
+
+<ul>
+  <li *ngFor="let user of users">{{user.name}}</li>
+</ul>
+
+<app-list></app-list> -->
